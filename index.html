@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Priyanka Singh — Graphic Designer &amp; UI/UX Designer</title>
+  <meta name="description" content="Portfolio of Priyanka Singh, a Graphic Designer and UI/UX Designer based in Gorakhpur, India. Specializing in brand identity, editorial design, UI/UX systems, posters, and visual storytelling.">
+  <meta name="keywords" content="Priyanka Singh, Graphic Designer, UI/UX Designer, Gorakhpur, Brand Identity, Poster Design, Packaging, Figma, Adobe Photoshop, Illustrator">
+  <meta name="author" content="Priyanka Singh">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://priyanka-new.vercel.app/">
+  <meta property="og:title" content="Priyanka Singh — Graphic Designer &amp; UI/UX Designer">
+  <meta property="og:description" content="Creative visual design, brand identities, UI/UX experiences, and editorial typography by Priyanka Singh.">
+  <meta property="og:image" content="assets/images/priyanka-profile.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23830005'/><text x='50' y='64' font-size='42' font-family='serif' font-weight='bold' fill='%23F5F3EE' text-anchor='middle'>PS</text></svg>">
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- CDNs: GSAP 3, ScrollTrigger & Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body class="loading">
+
+  <!-- Custom Cursor Elements -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-follower" id="cursorFollower" aria-hidden="true">
+    <span class="cursor-label" id="cursorLabel">VIEW</span>
+  </div>
+
+  <!-- Noise Overlay for Editorial Texture -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Interactive 3D Ambient Canvas -->
+  <canvas id="ambientCanvas" class="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Preloader Screen -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-monogram">PS</div>
+      <div class="preloader-title">PRIYANKA SINGH</div>
+      <div class="preloader-subtitle">PORTFOLIO ARCHIVE / 2026</div>
+      <div class="preloader-bar">
+        <div class="preloader-progress" id="preloaderProgress"></div>
+      </div>
+      <div class="preloader-counter" id="preloaderCounter">00%</div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Main Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner container">
+      <!-- Monogram / Brand Logo -->
+      <a href="#hero" class="brand-logo" aria-label="Priyanka Singh Home">
+        <span class="logo-mark">PS</span>
+        <div class="logo-text">
+          <span class="name">PRIYANKA SINGH</span>
+          <span class="role">CREATIVE DESIGNER</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#uiux" class="nav-link">UI/UX</a></li>
+          <li><a href="#work" class="nav-link">Selected Work</a></li>
+          <li><a href="#gallery" class="nav-link">Graphic Archive</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="#resume" class="nav-link">Resume</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <div class="availability-badge" title="Open for freelance and full-time opportunities">
+          <span class="status-dot"></span>
+          <span class="status-text">Available For Work</span>
+        </div>
+        <a href="#contact" class="btn btn-primary nav-cta">Let's Talk</a>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Fullscreen Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" aria-hidden="true">
+    <div class="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-container">
+      <div class="mobile-nav-header">
+        <span class="mobile-nav-title">DIRECTORY</span>
+        <span class="mobile-nav-location">Gorakhpur, UP, India</span>
+      </div>
+      <ul class="mobile-nav-list">
+        <li><a href="#hero" class="mobile-nav-link" data-index="01"><span class="link-num">01</span><span class="link-text">Home</span></a></li>
+        <li><a href="#about" class="mobile-nav-link" data-index="02"><span class="link-num">02</span><span class="link-text">About Priyanka</span></a></li>
+        <li><a href="#uiux" class="mobile-nav-link" data-index="03"><span class="link-num">03</span><span class="link-text">UI/UX Case Studies</span></a></li>
+        <li><a href="#work" class="mobile-nav-link" data-index="04"><span class="link-num">04</span><span class="link-text">Selected Work</span></a></li>
+        <li><a href="#gallery" class="mobile-nav-link" data-index="05"><span class="link-num">05</span><span class="link-text">Graphic Archive</span></a></li>
+        <li><a href="#skills" class="mobile-nav-link" data-index="06"><span class="link-num">06</span><span class="link-text">Skills &amp; Tools</span></a></li>
+        <li><a href="#process" class="mobile-nav-link" data-index="07"><span class="link-num">07</span><span class="link-text">Design Process</span></a></li>
+        <li><a href="#resume" class="mobile-nav-link" data-index="08"><span class="link-num">08</span><span class="link-text">Education &amp; CV</span></a></li>
+        <li><a href="#contact" class="mobile-nav-link" data-index="09"><span class="link-num">09</span><span class="link-text">Get in Touch</span></a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <div class="mobile-contact-snippet">
+          <a href="mailto:priyankasingh09@gmail.com">priyankasingh09@gmail.com</a>
+          <a href="tel:+916306023403">+91 6306023403</a>
+        </div>
+        <p class="mobile-nav-copy">&copy; 2026 Priyanka Singh. Gorakhpur, India.</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="mainContent">
+
+    <!-- ==============================================================
+         1. HERO SECTION
+         ============================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container container">
+
+        <div class="hero-content">
+          <div class="hero-label-wrapper">
+            <span class="hero-badge-tag">PORTFOLIO ARCHIVE</span>
+            <span class="hero-subbadge">GRAPHIC DESIGNER &times; UI/UX DESIGNER</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-line hero-line-serif">Designing Visual</span>
+            <span class="hero-line hero-line-accent">Experiences That</span>
+            <span class="hero-line hero-line-large">People Remember.</span>
+          </h1>
+
+          <p class="hero-description">
+            Creative and detail-oriented Graphic Designer and UI/UX Designer focused on visual communication, brand identity systems, digital experiences, vector art, and clean, intuitive user interfaces.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#work" class="btn btn-primary btn-magnetic" data-magnetic>
+              <span>View Selected Work</span>
+              <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.333 8h9.334M8.667 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-outline btn-magnetic" data-magnetic>
+              <span>Let's Talk</span>
+            </a>
+            <a href="assets/docs/Priyanka_Singh_Resume.pdf" download="Priyanka_Singh_Resume.pdf" class="btn btn-ghost" title="Download Verified ATS Resume">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <span>Download CV</span>
+            </a>
+          </div>
+
+          <div class="hero-quick-meta">
+            <div class="meta-item">
+              <span class="meta-label">Based in</span>
+              <span class="meta-val">Gorakhpur, UP, India</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Specialization</span>
+              <span class="meta-val">Brand &bull; UI/UX &bull; Editorial</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Core Tools</span>
+              <span class="meta-val">Figma, Photoshop, Illustrator</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Parallax Composition with Profile Portrait -->
+        <div class="hero-visual" id="heroVisual">
+          <div class="visual-backdrop-shape" aria-hidden="true"></div>
+          
+          <div class="visual-portrait-card" data-tilt>
+            <div class="portrait-arch-mask">
+              <img src="assets/images/priyanka-profile.png" alt="Priyanka Singh - Graphic and UI/UX Designer" class="portrait-image" loading="eager" decoding="async">
+            </div>
+
+            <!-- Floating Badge Pills -->
+            <div class="float-badge badge-figma" data-depth="0.15">
+              <div class="badge-icon icon-figma">
+                <svg viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+                  <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5A9.5 9.5 0 0 1 0 47.5z" fill="#0ACF83"/>
+                  <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#FF7262"/>
+                  <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E"/>
+                  <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF"/>
+                </svg>
+              </div>
+              <span>UI/UX &bull; Systems</span>
+            </div>
+
+            <div class="float-badge badge-photoshop" data-depth="0.25">
+              <div class="badge-icon icon-ps">Ps</div>
+              <span>Digital Imagery &bull; Post</span>
+            </div>
+
+            <div class="float-badge badge-illustrator" data-depth="0.20">
+              <div class="badge-icon icon-ai">Ai</div>
+              <span>Vector &bull; Brand Identity</span>
+            </div>
+
+            <!-- Editorial Accent Stamp -->
+            <div class="portrait-stamp" aria-hidden="true">
+              <svg viewBox="0 0 120 120" class="stamp-svg">
+                <path id="stampPath" d="M 60, 60 m -45, 0 a 45,45 0 1,1 90,0 a 45,45 0 1,1 -90,0" fill="transparent" />
+                <text class="stamp-text">
+                  <textPath href="#stampPath" startOffset="0%">
+                    PRIYANKA SINGH &bull; VISUAL CREATIVE &bull; 2026 &bull;
+                  </textPath>
+                </text>
+              </svg>
+              <span class="stamp-center">&#10022;</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator">
+        <a href="#marquee" class="scroll-link" aria-label="Scroll to exploration section">
+          <span class="scroll-text">SCROLL TO EXPLORE</span>
+          <span class="scroll-line"></span>
+          <span class="scroll-chevron">&darr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         2. INFINITE DUAL-ROW MARQUEE
+         ============================================================== -->
+    <section class="marquee-section" id="marquee" aria-label="Skills ticker">
+      <div class="marquee-track marquee-forward">
+        <div class="marquee-group">
+          <span>GRAPHIC DESIGN</span><span class="separator">&#10022;</span>
+          <span>UI/UX DESIGN</span><span class="separator">&#10022;</span>
+          <span>BRAND IDENTITY</span><span class="separator">&#10022;</span>
+          <span>POSTER DESIGN</span><span class="separator">&#10022;</span>
+          <span>VISUAL STORYTELLING</span><span class="separator">&#10022;</span>
+          <span>VECTOR ILLUSTRATION</span><span class="separator">&#10022;</span>
+          <span>PACKAGING DESIGN</span><span class="separator">&#10022;</span>
+          <span>DIGITAL EXPERIENCES</span><span class="separator">&#10022;</span>
+          <span>TYPOGRAPHY</span><span class="separator">&#10022;</span>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span>GRAPHIC DESIGN</span><span class="separator">&#10022;</span>
+          <span>UI/UX DESIGN</span><span class="separator">&#10022;</span>
+          <span>BRAND IDENTITY</span><span class="separator">&#10022;</span>
+          <span>POSTER DESIGN</span><span class="separator">&#10022;</span>
+          <span>VISUAL STORYTELLING</span><span class="separator">&#10022;</span>
+          <span>VECTOR ILLUSTRATION</span><span class="separator">&#10022;</span>
+          <span>PACKAGING DESIGN</span><span class="separator">&#10022;</span>
+          <span>DIGITAL EXPERIENCES</span><span class="separator">&#10022;</span>
+          <span>TYPOGRAPHY</span><span class="separator">&#10022;</span>
+        </div>
+      </div>
+
+      <div class="marquee-track marquee-reverse">
+        <div class="marquee-group">
+          <span>ADOBE PHOTOSHOP</span><span class="separator">&bull;</span>
+          <span>FIGMA PROTOTYPES</span><span class="separator">&bull;</span>
+          <span>ADOBE ILLUSTRATOR</span><span class="separator">&bull;</span>
+          <span>OOH BILLBOARDS</span><span class="separator">&bull;</span>
+          <span>PREMIERE PRO</span><span class="separator">&bull;</span>
+          <span>EDITORIAL LAYOUTS</span><span class="separator">&bull;</span>
+          <span>AFTER EFFECTS</span><span class="separator">&bull;</span>
+          <span>SWISS GRID SYSTEMS</span><span class="separator">&bull;</span>
+          <span>RESPONSIVE UI</span><span class="separator">&bull;</span>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span>ADOBE PHOTOSHOP</span><span class="separator">&bull;</span>
+          <span>FIGMA PROTOTYPES</span><span class="separator">&bull;</span>
+          <span>ADOBE ILLUSTRATOR</span><span class="separator">&bull;</span>
+          <span>OOH BILLBOARDS</span><span class="separator">&bull;</span>
+          <span>PREMIERE PRO</span><span class="separator">&bull;</span>
+          <span>EDITORIAL LAYOUTS</span><span class="separator">&bull;</span>
+          <span>AFTER EFFECTS</span><span class="separator">&bull;</span>
+          <span>SWISS GRID SYSTEMS</span><span class="separator">&bull;</span>
+          <span>RESPONSIVE UI</span><span class="separator">&bull;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         3. ABOUT SECTION (FACTUAL & EDITORIAL)
+         ============================================================== -->
+    <section class="about-section section-padding" id="about">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">01</span>
+            <span class="section-kicker">PROFILE &amp; PHILOSOPHY</span>
+          </div>
+          <h2 class="section-title">Hello, I'm Priyanka.</h2>
+          <p class="section-subtitle">Visual Designer, UI/UX Crafter &amp; Storyteller based in Gorakhpur, Uttar Pradesh.</p>
+        </div>
+
+        <div class="about-grid">
+          
+          <!-- Editorial Bio Text -->
+          <div class="about-narrative">
+            <p class="lead-text">
+              I am a creative and detail-oriented <strong class="highlight">Graphic Designer</strong> and <strong class="highlight">UI/UX Designer</strong> with a deep passion for visual communication, modern branding, digital interfaces, and thoughtful typography.
+            </p>
+            <p class="body-text">
+              Equipped with a solid foundation in digital media through my <strong>DGWA (Diploma in Graphics, Web Design &amp; 2D Animation)</strong> at <strong>MAAC Gorakhpur</strong> and an analytical background from my <strong>B.Sc. at Deen Dayal Upadhyaya Gorakhpur University</strong>, I merge creative intuition with methodical structure.
+            </p>
+            <p class="body-text">
+              Whether designing an artisanal identity for a cafe, engineering a multi-device UI system, crafting high-impact advertising posters, or creating expressive vector illustrations, my aim is always simple: <em>craft work that communicates clearly, connects emotionally, and leaves an enduring impression.</em>
+            </p>
+
+            <div class="about-pillars">
+              <div class="pillar-card">
+                <span class="pillar-index">01</span>
+                <h4 class="pillar-title">Brand &amp; Identity</h4>
+                <p class="pillar-desc">Comprehensive visual languages, logos, custom typography, packaging and OOH billboard campaigns.</p>
+              </div>
+              <div class="pillar-card">
+                <span class="pillar-index">02</span>
+                <h4 class="pillar-title">UI/UX &amp; Web Systems</h4>
+                <p class="pillar-desc">Clean, user-centric interfaces across laptop, tablet, and mobile with coherent design tokens and hierarchy.</p>
+              </div>
+              <div class="pillar-card">
+                <span class="pillar-index">03</span>
+                <h4 class="pillar-title">Posters &amp; Editorial</h4>
+                <p class="pillar-desc">Emotionally resonant advertising posters, marketing brochures, menu books, and vector art compositions.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fact Sheet & Personal Stats Card -->
+          <div class="about-dossier-card">
+            <div class="dossier-header">
+              <span class="dossier-tag">VERIFIED DOSSIER</span>
+              <span class="dossier-serial">REF: PS-2026-ATS</span>
+            </div>
+
+            <div class="dossier-photo-wrap">
+              <img src="assets/images/priyanka-profile.png" alt="Priyanka Singh Profile Illustration" class="dossier-photo">
+              <div class="dossier-stamp">AUTHENTIC ARCHIVE</div>
+            </div>
+
+            <div class="dossier-list">
+              <div class="dossier-row">
+                <span class="dossier-label">Full Name</span>
+                <span class="dossier-value">Priyanka Singh</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Profession</span>
+                <span class="dossier-value">Graphic Designer | UI/UX Designer</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Location</span>
+                <span class="dossier-value">Gorakhpur, Uttar Pradesh, India</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Education</span>
+                <span class="dossier-value">DGWA (MAAC Gorakhpur) &bull; B.Sc. (DDU)</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Email</span>
+                <span class="dossier-value"><a href="mailto:priyankasingh09@gmail.com" class="dossier-link">priyankasingh09@gmail.com</a></span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Phone</span>
+                <span class="dossier-value"><a href="tel:+916306023403" class="dossier-link">+91 6306023403</a></span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Portfolio</span>
+                <span class="dossier-value"><a href="https://priyanka-new.vercel.app/" target="_blank" rel="noopener noreferrer" class="dossier-link">priyanka-new.vercel.app &nearr;</a></span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Languages</span>
+                <span class="dossier-value">English, Hindi</span>
+              </div>
+            </div>
+
+            <div class="dossier-footer">
+              <a href="#contact" class="btn btn-primary btn-block">Inquire for Collaborations</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         4. DEDICATED UI/UX CASE STUDIES SECTION
+         ============================================================== -->
+    <section class="uiux-section section-padding" id="uiux">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">02</span>
+            <span class="section-kicker">DIGITAL EXPERIENCES</span>
+          </div>
+          <h2 class="section-title">UI/UX Systems &amp; Case Studies</h2>
+          <p class="section-subtitle">Translating complex user journeys into structured, harmonious multi-device interfaces.</p>
+        </div>
+
+        <!-- Case Study 01: BUNNY Coffee & Sweets -->
+        <article class="case-study-card" id="cs-bunny">
+          <div class="case-study-grid">
+            <div class="case-study-info">
+              <div class="cs-badge-group">
+                <span class="cs-badge cs-badge-wine">RESPONSIVE WEB &amp; MOBILE</span>
+                <span class="cs-tag">FIGMA SYSTEM</span>
+              </div>
+              <h3 class="cs-title">BUNNY Coffee &amp; Sweets</h3>
+              <p class="cs-client">Artisanal Patisserie &amp; Specialty Cafe &bull; Multi-Device Experience</p>
+              
+              <p class="cs-summary">
+                A warm, inviting digital presence created for an artisanal bakery and specialty coffee brand. Built with a rich visual hierarchy that balances tempting confectionery imagery, seamless order flows, and responsive desktop-to-mobile navigation.
+              </p>
+
+              <!-- Design System Attributes -->
+              <div class="cs-spec-grid">
+                <div class="cs-spec-item">
+                  <span class="spec-label">Role &amp; Focus</span>
+                  <span class="spec-val">UI Architecture, Layout &amp; Visual Design</span>
+                </div>
+                <div class="cs-spec-item">
+                  <span class="spec-label">Core Tools</span>
+                  <span class="spec-val">Figma, Adobe Illustrator, Photoshop</span>
+                </div>
+                <div class="cs-spec-item">
+                  <span class="spec-label">Color System</span>
+                  <div class="palette-swatches">
+                    <span class="swatch" style="background-color: #830005;" title="Burgundy Wine #830005"></span>
+                    <span class="swatch" style="background-color: #F1E8DC;" title="Cream Foam #F1E8DC"></span>
+                    <span class="swatch" style="background-color: #2B1D1D;" title="Dark Roast #2B1D1D"></span>
+                    <span class="swatch" style="background-color: #D6A467;" title="Caramel Accent #D6A467"></span>
+                  </div>
+                </div>
+                <div class="cs-spec-item">
+                  <span class="spec-label">Target Viewports</span>
+                  <span class="spec-val">Desktop (1440px), iPad (810px), Mobile (390px)</span>
+                </div>
+              </div>
+
+              <!-- Process Pills -->
+              <div class="cs-deliverables">
+                <span class="deliv-pill">&check; Moodboard &amp; Palette Definition</span>
+                <span class="deliv-pill">&check; Mobile-First Wireframing</span>
+                <span class="deliv-pill">&check; Component &amp; Card System</span>
+                <span class="deliv-pill">&check; Interactive Device Mockups</span>
+              </div>
+
+              <div class="cs-actions">
+                <button class="btn btn-outline open-modal-btn" data-project-id="bunny-coffee">
+                  <span>Explore Case Study Details</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <a href="https://www.figma.com/design/50lYdtyUKWREys1ZElridp/all-work?t=TKbUrXDmWL6rbHok-0" target="_blank" rel="noopener noreferrer" class="btn btn-figma" title="Open BUNNY Coffee in Figma">
+                  <svg width="14" height="14" viewBox="0 0 38 57" fill="none" aria-hidden="true">
+                    <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+                    <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5A9.5 9.5 0 0 1 0 47.5z" fill="#0ACF83"/>
+                    <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#FF7262"/>
+                    <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E"/>
+                    <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF"/>
+                  </svg>
+                  <span>Open in Figma &nearr;</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Device Presentation Showcase -->
+            <div class="case-study-visual">
+              <div class="device-mockup-frame" data-tilt>
+                <div class="device-window-bar">
+                  <div class="window-buttons">
+                    <span class="win-btn win-close"></span>
+                    <span class="win-btn win-min"></span>
+                    <span class="win-btn win-max"></span>
+                  </div>
+                  <div class="window-address">https://bunny-coffee-sweets.preview/</div>
+                </div>
+                <div class="mockup-img-wrapper">
+                  <img src="assets/images/uiux-bunny-coffee.jpeg" alt="BUNNY Coffee &amp; Sweets UI/UX multi-device mockup" class="case-mockup-img" loading="lazy" decoding="async">
+                  <div class="mockup-overlay-badge">
+                    <span class="badge-dot"></span>
+                    <span>Live Multi-Device Presentation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Case Study 02: BloomEnergy -->
+        <article class="case-study-card" id="cs-bloom">
+          <div class="case-study-grid">
+            <div class="case-study-info">
+              <div class="cs-badge-group">
+                <span class="cs-badge cs-badge-green">CLEAN-TECH &amp; PLATFORM UI</span>
+                <span class="cs-tag">FIGMA SYSTEM</span>
+              </div>
+              <h3 class="cs-title">BloomEnergy Platform</h3>
+              <p class="cs-client">Clean Technology &amp; Sustainable Energy Dashboard &bull; Responsive System</p>
+              
+              <p class="cs-summary">
+                A clean, modern SaaS web design for a renewable energy management suite. Crafted with intentional typography, crisp data presentation cards, clear call-to-action architecture, and responsive components across desktop, tablet, and smartphone.
+              </p>
+
+              <!-- Design System Attributes -->
+              <div class="cs-spec-grid">
+                <div class="cs-spec-item">
+                  <span class="spec-label">Role &amp; Focus</span>
+                  <span class="spec-val">Information Hierarchy, UI Grid &amp; Multi-Viewport</span>
+                </div>
+                <div class="cs-spec-item">
+                  <span class="spec-label">Core Tools</span>
+                  <span class="spec-val">Figma, Adobe Photoshop</span>
+                </div>
+                <div class="cs-spec-item">
+                  <span class="spec-label">Color System</span>
+                  <div class="palette-swatches">
+                    <span class="swatch" style="background-color: #1A3626;" title="Forest Deep #1A3626"></span>
+                    <span class="swatch" style="background-color: #22C55E;" title="Clean Emerald #22C55E"></span>
+                    <span class="swatch" style="background-color: #F8FAFC;" title="Clean Slate #F8FAFC"></span>
+                    <span class="swatch" style="background-color: #0F172A;" title="Charcoal Dark #0F172A"></span>
+                  </div>
+                </div>
+                <div class="cs-spec-item">
+                  <span class="spec-label">Target Viewports</span>
+                  <span class="spec-val">Laptop / Tablet / Mobile Cross-Platform</span>
+                </div>
+              </div>
+
+              <!-- Process Pills -->
+              <div class="cs-deliverables">
+                <span class="deliv-pill">&check; User Journey Mapping</span>
+                <span class="deliv-pill">&check; Clean Card Hierarchy</span>
+                <span class="deliv-pill">&check; Responsive Grid Layout</span>
+                <span class="deliv-pill">&check; High-Fidelity Prototype</span>
+              </div>
+
+              <div class="cs-actions">
+                <button class="btn btn-outline open-modal-btn" data-project-id="bloom-energy">
+                  <span>Explore Case Study Details</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <a href="https://www.figma.com/design/50lYdtyUKWREys1ZElridp/all-work?t=TKbUrXDmWL6rbHok-0" target="_blank" rel="noopener noreferrer" class="btn btn-figma" title="Open BloomEnergy in Figma">
+                  <svg width="14" height="14" viewBox="0 0 38 57" fill="none" aria-hidden="true">
+                    <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+                    <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5A9.5 9.5 0 0 1 0 47.5z" fill="#0ACF83"/>
+                    <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#FF7262"/>
+                    <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E"/>
+                    <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF"/>
+                  </svg>
+                  <span>Open in Figma &nearr;</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Device Presentation Showcase -->
+            <div class="case-study-visual">
+              <div class="device-mockup-frame" data-tilt>
+                <div class="device-window-bar">
+                  <div class="window-buttons">
+                    <span class="win-btn win-close"></span>
+                    <span class="win-btn win-min"></span>
+                    <span class="win-btn win-max"></span>
+                  </div>
+                  <div class="window-address">https://bloomenergy.clean-tech/system</div>
+                </div>
+                <div class="mockup-img-wrapper">
+                  <img src="assets/images/uiux-bloomenergy.jpeg" alt="BloomEnergy clean-tech multi-device responsive mockup" class="case-mockup-img" loading="lazy" decoding="async">
+                  <div class="mockup-overlay-badge">
+                    <span class="badge-dot"></span>
+                    <span>Adaptive Responsive Ecosystem</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         5. SELECTED WORK (ASYMMETRIC EDITORIAL PORTFOLIO GRID)
+         ============================================================== -->
+    <section class="work-section section-padding" id="work">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">03</span>
+            <span class="section-kicker">CURATED REPERTOIRE</span>
+          </div>
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-subtitle">A collection of visual experiments, identities, advertising campaigns, and digital experiences.</p>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="work-filter-bar" role="tablist" aria-label="Portfolio Category Filters">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">
+            <span>ALL</span>
+            <span class="filter-count">(16)</span>
+          </button>
+          <button class="filter-btn" data-filter="branding" role="tab" aria-selected="false">
+            <span>BRANDING</span>
+            <span class="filter-count">(5)</span>
+          </button>
+          <button class="filter-btn" data-filter="posters" role="tab" aria-selected="false">
+            <span>POSTERS</span>
+            <span class="filter-count">(4)</span>
+          </button>
+          <button class="filter-btn" data-filter="uiux" role="tab" aria-selected="false">
+            <span>UI/UX</span>
+            <span class="filter-count">(2)</span>
+          </button>
+          <button class="filter-btn" data-filter="packaging" role="tab" aria-selected="false">
+            <span>PACKAGING &amp; OOH</span>
+            <span class="filter-count">(3)</span>
+          </button>
+          <button class="filter-btn" data-filter="vector" role="tab" aria-selected="false">
+            <span>VECTOR ART</span>
+            <span class="filter-count">(2)</span>
+          </button>
+        </div>
+
+        <!-- Asymmetric Editorial Grid -->
+        <div class="work-grid" id="workGrid">
+
+          <!-- Item 01: Porsche GT3 RS Motorsport Poster -->
+          <article class="work-item card-large" data-category="posters" data-project-id="porsche-gt3rs">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/poster-porsche-gt3rs.jpeg" alt="Porsche GT3 RS Motorsport Poster Design" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">01</span>
+                  <span class="work-cat">POSTER DESIGN &bull; ADVERTISING</span>
+                </div>
+                <h3 class="work-title">Porsche GT3 RS Motorsport Campaign</h3>
+                <p class="work-desc">High-octane editorial automotive poster celebrating precision engineering, aerodynamic typography, and striking track imagery.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 02: Bunny Coffee & Sweets Identity -->
+          <article class="work-item card-medium" data-category="branding" data-project-id="bunny-branding">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/branding-bunny-coffee.jpg" alt="Bunny Coffee and Sweets Brand Identity" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">02</span>
+                  <span class="work-cat">BRAND IDENTITY &bull; PACKAGING</span>
+                </div>
+                <h3 class="work-title">BUNNY Coffee &amp; Sweets Identity</h3>
+                <p class="work-desc">Whimsical yet elegant artisanal branding featuring deep burgundy tones, bespoke typography, and cup packaging.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 03: Black Cherry Bar Packaging & Mockup -->
+          <article class="work-item card-tall" data-category="packaging" data-project-id="black-cherry">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/branding-black-cherry.jpg" alt="Black Cherry Luxury Chocolate Packaging" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">03</span>
+                  <span class="work-cat">PACKAGING &bull; LUXURY BRAND</span>
+                </div>
+                <h3 class="work-title">Black Cherry Confectionery Packaging</h3>
+                <p class="work-desc">Opulent chocolate bar sleeve packaging combining rich cherry-hued botanical illustrations and modern serif typography.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 04: BloomEnergy UI/UX System -->
+          <article class="work-item card-wide" data-category="uiux" data-project-id="bloom-energy">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/uiux-bloomenergy.jpeg" alt="BloomEnergy Clean-Tech UI System" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">04</span>
+                  <span class="work-cat">UI/UX &bull; CLEAN-TECH PLATFORM</span>
+                </div>
+                <h3 class="work-title">BloomEnergy Sustainable Grid Platform</h3>
+                <p class="work-desc">Multi-device clean energy interface showcasing responsive cards, data clarity, and emerald accent hierarchy.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 05: Tokyo Tourism Airport Billboard -->
+          <article class="work-item card-wide" data-category="packaging" data-project-id="tokyo-billboard">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/billboard-tokyo-tourism.png" alt="Tokyo Tourism Airport Billboard Mockup" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">05</span>
+                  <span class="work-cat">OOH BILLBOARD &bull; CAMPAIGN</span>
+                </div>
+                <h3 class="work-title">Tokyo Tourism OOH Airport Campaign</h3>
+                <p class="work-desc">Large-format cinematic billboard visual showcasing Japanese travel aesthetics, cultural monuments, and modern typography.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 06: Luceria Luxury Perfume Poster -->
+          <article class="work-item card-medium" data-category="posters" data-project-id="luceria-perfume">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/poster-luceria-perfume.jpeg" alt="Luceria Eau de Parfum Luxury Editorial Poster" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">06</span>
+                  <span class="work-cat">POSTER DESIGN &bull; LUXURY</span>
+                </div>
+                <h3 class="work-title">Luceria Eau de Parfum Advertising</h3>
+                <p class="work-desc">Editorial fragrance ad featuring atmospheric lighting, liquid gold reflections, and haute-couture typography.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 07: Pop-Art Vector Portrait Illustration -->
+          <article class="work-item card-medium" data-category="vector" data-project-id="pop-vector">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/vector-pop-portrait.jpg" alt="Pop-Art Color Vector Portrait Illustration" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">07</span>
+                  <span class="work-cat">VECTOR ART &bull; ILLUSTRATION</span>
+                </div>
+                <h3 class="work-title">Chromatic Pop-Art Vector Portrait</h3>
+                <p class="work-desc">Stylized high-contrast vector portrait rendered with bold color blocking, precise pen curves, and modern graphic flair.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 08: Verella Haute Couture Brand -->
+          <article class="work-item card-tall" data-category="branding" data-project-id="verella-fashion">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/branding-verella-fashion.jpg" alt="Verella Haute Couture Brand Identity" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">08</span>
+                  <span class="work-cat">BRAND IDENTITY &bull; FASHION</span>
+                </div>
+                <h3 class="work-title">Verella Fashion &amp; Apparel Identity</h3>
+                <p class="work-desc">Minimalist high-fashion branding featuring understated serif logotype, monochrome tones, and sleek stationery mockups.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 09: Purre Cat Biscuits Packaging -->
+          <article class="work-item card-medium" data-category="packaging" data-project-id="purre-packaging">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/packaging-purre-catfood.png" alt="Purre Cat Biscuits Packaging Mockup" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">09</span>
+                  <span class="work-cat">PACKAGING &bull; PET PRODUCT</span>
+                </div>
+                <h3 class="work-title">Purre Cat Biscuits Package System</h3>
+                <p class="work-desc">Playful, premium standing pouch packaging crafted with vibrant pastel color contrasts and crisp vector mascot illustrations.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 10: Aerion Shoes "Move Different" Poster -->
+          <article class="work-item card-large" data-category="posters" data-project-id="aerion-shoes">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/poster-aerion-shoes.jpeg" alt="Aerion Move Different Shoes Poster" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">10</span>
+                  <span class="work-cat">POSTER DESIGN &bull; FOOTWEAR</span>
+                </div>
+                <h3 class="work-title">Aerion "Move Different" Footwear Ad</h3>
+                <p class="work-desc">Futuristic sportswear poster with dynamic motion blur, neon accents, and bold geometric typography designed to captivate.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 11: Velora Beauty Brand Identity -->
+          <article class="work-item card-medium" data-category="branding" data-project-id="velora-beauty">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/branding-velora-beauty.jpg" alt="Velora Cosmetics and Beauty Brand" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">11</span>
+                  <span class="work-cat">BRAND IDENTITY &bull; BEAUTY</span>
+                </div>
+                <h3 class="work-title">Velora Botanical Cosmetics</h3>
+                <p class="work-desc">Soft organic branding system designed for clean beauty skincare with refined serif typography and neutral beige packaging.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 12: Anime Character Vector Art -->
+          <article class="work-item card-tall" data-category="vector" data-project-id="anime-vector">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/vector-anime-character.png" alt="Anime Character Vector Illustration" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">12</span>
+                  <span class="work-cat">VECTOR ART &bull; CHARACTER</span>
+                </div>
+                <h3 class="work-title">Contemporary Anime Vector Study</h3>
+                <p class="work-desc">Detailed character artwork created in Adobe Illustrator featuring layered cel shading, lighting highlights, and linework precision.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 13: BUNNY Coffee Multi-Device UI/UX -->
+          <article class="work-item card-wide" data-category="uiux" data-project-id="bunny-coffee">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/uiux-bunny-coffee.jpeg" alt="Bunny Coffee and Sweets Responsive UI UX" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">13</span>
+                  <span class="work-cat">UI/UX &bull; ARTISANAL WEB</span>
+                </div>
+                <h3 class="work-title">BUNNY Coffee &amp; Sweets Digital Web</h3>
+                <p class="work-desc">Complete multi-device web experience crafted in Figma with seamless menu exploration, rich visual tones, and responsive components.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 14: Milkora Fresh Dairy Packaging -->
+          <article class="work-item card-medium" data-category="branding" data-project-id="milkora-dairy">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/packaging-milkora.jpeg" alt="Milkora Fresh Farm Milk Packaging" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">14</span>
+                  <span class="work-cat">PACKAGING &bull; DAIRY BRAND</span>
+                </div>
+                <h3 class="work-title">Milkora Pure Farm Milk Pouch</h3>
+                <p class="work-desc">Fresh, approachable dairy packaging concept highlighting clean milk splashes, organic trust symbols, and shelf standout.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 15: Sony Alpha Mirrorless Camera Poster -->
+          <article class="work-item card-medium" data-category="posters" data-project-id="sony-alpha">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/poster-sony-alpha.jpeg" alt="Sony Alpha Camera Advertising Poster" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">15</span>
+                  <span class="work-cat">POSTER DESIGN &bull; TECH</span>
+                </div>
+                <h3 class="work-title">Sony Alpha "Capture Reality" Poster</h3>
+                <p class="work-desc">Tech-forward product advertising emphasizing sensor brilliance, optical clarity, and minimalist Swiss typographic layout.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Item 16: Velluto Artisan Gelato Brand -->
+          <article class="work-item card-tall" data-category="branding" data-project-id="velluto-gelato">
+            <div class="work-card-inner">
+              <div class="work-media">
+                <img src="assets/images/branding-velluto-icecream.jpg" alt="Velluto Artisan Ice Cream Branding" class="work-img" loading="lazy" decoding="async">
+                <div class="media-overlay">
+                  <div class="overlay-badge">
+                    <span>EXPLORE PROJECT</span>
+                    <span class="arrow-glyph">&rarr;</span>
+                  </div>
+                </div>
+              </div>
+              <div class="work-info">
+                <div class="work-meta">
+                  <span class="work-num">16</span>
+                  <span class="work-cat">BRAND IDENTITY &bull; DESSERT</span>
+                </div>
+                <h3 class="work-title">Velluto Italian Gelato Branding</h3>
+                <p class="work-desc">Sensory branding identity for gourmet Italian ice cream utilizing pastel hues, artisanal stamps, and premium tub packaging.</p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         6. GRAPHIC ARCHIVE MASONRY GALLERY (WITH LIGHTBOX)
+         ============================================================== -->
+    <section class="gallery-section section-padding" id="gallery">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">04</span>
+            <span class="section-kicker">PRODUCTION VAULT</span>
+          </div>
+          <h2 class="section-title">Graphic Design Archive</h2>
+          <p class="section-subtitle">A curated masonry gallery of advertising posters, editorial brochures, photo manipulations, and vector creations. Click any piece for full lightbox inspection.</p>
+        </div>
+
+        <div class="masonry-gallery" id="masonryGallery">
+
+          <!-- Masonry item: Titan Watch Poster -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-titan-chronograph.jpg" data-lightbox-title="Titan Chronograph Advertising Poster" data-lightbox-category="Poster Design &bull; Photoshop">
+            <div class="masonry-media">
+              <img src="assets/images/poster-titan-chronograph.jpg" alt="Titan Chronograph Watch Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Titan Chronograph</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: McDonald's Ganesh Chaturthi Festive Ad -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-mcdonalds-festive.jpeg" data-lightbox-title="McDonald's Festive Creative — Ganesh Chaturthi" data-lightbox-category="Festive Campaign &bull; Creative Advertising">
+            <div class="masonry-media">
+              <img src="assets/images/poster-mcdonalds-festive.jpeg" alt="McDonald's Ganesh Chaturthi Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Festive Creative Ad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: The Grand Reserve Menu Brochure -->
+          <div class="masonry-item" data-lightbox-src="assets/images/editorial-menu-grand-reserve.jpg" data-lightbox-title="The Grand Reserve Fine Dining Menu Brochure" data-lightbox-category="Editorial &bull; Print Layout">
+            <div class="masonry-media">
+              <img src="assets/images/editorial-menu-grand-reserve.jpg" alt="The Grand Reserve Menu Brochure" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Fine Dining Menu</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Fortune Sunflower Oil Ad -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-fortune-oil.jpeg" data-lightbox-title="Fortune Pure Sunflower Oil Print Campaign" data-lightbox-category="Advertising &bull; FMCG Poster">
+            <div class="masonry-media">
+              <img src="assets/images/poster-fortune-oil.jpeg" alt="Fortune Sunflower Oil Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Fortune Sunflower Oil</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Simple Face Wash Ad -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-simple-facewash.jpeg" data-lightbox-title="Simple Refreshing Facial Wash Advertising" data-lightbox-category="Skincare Advertising &bull; Visual Retouch">
+            <div class="masonry-media">
+              <img src="assets/images/poster-simple-facewash.jpeg" alt="Simple Refreshing Face Wash Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Simple Skincare Ad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Homescape Highway Billboard -->
+          <div class="masonry-item" data-lightbox-src="assets/images/billboard-homescape.jpg" data-lightbox-title="Homescape Premium Living Highway Billboard" data-lightbox-category="OOH Billboard &bull; Architecture">
+            <div class="masonry-media">
+              <img src="assets/images/billboard-homescape.jpg" alt="Homescape Highway Billboard" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Homescape Billboard</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Delicate Med Herbal Shampoo Ad -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-delicatemed-shampoo.jpg" data-lightbox-title="Delicate Med Hair Nourishment Campaign" data-lightbox-category="Product Poster &bull; Visual Composition">
+            <div class="masonry-media">
+              <img src="assets/images/poster-delicatemed-shampoo.jpg" alt="Delicate Med Shampoo Ad Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Delicate Med Ad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Burger Express Poster -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-burger-express.jpg" data-lightbox-title="Artisan Burger Express Promotional Creative" data-lightbox-category="Food &amp; Beverage Advertising">
+            <div class="masonry-media">
+              <img src="assets/images/poster-burger-express.jpg" alt="Delicious Burger Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Burger Express</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Guitar Typography Art -->
+          <div class="masonry-item" data-lightbox-src="assets/images/vector-guitar-typography.jpg" data-lightbox-title="Acoustic Guitar Typographic Illustration" data-lightbox-category="Vector Art &bull; Typography Composition">
+            <div class="masonry-media">
+              <img src="assets/images/vector-guitar-typography.jpg" alt="Guitar Typographic Art" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Guitar Typo Art</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Time to Travel Billboard -->
+          <div class="masonry-item" data-lightbox-src="assets/images/billboard-time-to-travel.jpg" data-lightbox-title="Time to Travel OOH Billboard Mockup" data-lightbox-category="OOH Billboard &bull; Tourism">
+            <div class="masonry-media">
+              <img src="assets/images/billboard-time-to-travel.jpg" alt="Time to Travel Billboard" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Travel Billboard</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Tropicana Orange Juice Poster -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-tropicana-orange.jpg" data-lightbox-title="Tropicana Pure Squeezed Orange Juice Poster" data-lightbox-category="FMCG Advertising &bull; Composite">
+            <div class="masonry-media">
+              <img src="assets/images/poster-tropicana-orange.jpg" alt="Tropicana Orange Juice Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Tropicana Citrus Ad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Modern Interior Furniture Brochure -->
+          <div class="masonry-item" data-lightbox-src="assets/images/editorial-furniture-brochure.jpg" data-lightbox-title="Modern Interior &amp; Furniture Editorial Brochure" data-lightbox-category="Editorial &bull; Swiss Layout">
+            <div class="masonry-media">
+              <img src="assets/images/editorial-furniture-brochure.jpg" alt="Furniture Brochure Layout" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Furniture Brochure</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Ford Mustang Vector Poster -->
+          <div class="masonry-item" data-lightbox-src="assets/images/vector-ford-mustang.jpg" data-lightbox-title="Classic Ford Mustang Vector Poster" data-lightbox-category="Vector Illustration &bull; Automotive">
+            <div class="masonry-media">
+              <img src="assets/images/vector-ford-mustang.jpg" alt="Ford Mustang Vector Car Poster" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Mustang Vector</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Whiskers Cookies Brochure -->
+          <div class="masonry-item" data-lightbox-src="assets/images/editorial-cookies-brochure.jpg" data-lightbox-title="Whiskers Delight Cookies Trifold Brochure" data-lightbox-category="Editorial Print &bull; Packaging">
+            <div class="masonry-media">
+              <img src="assets/images/editorial-cookies-brochure.jpg" alt="Cookies Trifold Brochure" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Cookies Trifold</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: YouTube Tata Breach Thumbnail -->
+          <div class="masonry-item" data-lightbox-src="assets/images/social-youtube-tata-breach.jpg" data-lightbox-title="High-CTR YouTube Creative Thumbnail" data-lightbox-category="Social Media &bull; YouTube Design">
+            <div class="masonry-media">
+              <img src="assets/images/social-youtube-tata-breach.jpg" alt="YouTube Thumbnail Design" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">High-CTR Thumbnail</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Masonry item: Linda Coggin Book Cover / Tiger Heart -->
+          <div class="masonry-item" data-lightbox-src="assets/images/poster-tiger-heart-book.jpg" data-lightbox-title="The Tiger Heart Book Cover Illustration" data-lightbox-category="Book Design &bull; Vector Illustration">
+            <div class="masonry-media">
+              <img src="assets/images/poster-tiger-heart-book.jpg" alt="The Tiger Heart Book Cover" loading="lazy" decoding="async">
+              <div class="masonry-hover">
+                <span class="hover-icon">&plus;</span>
+                <span class="hover-text">Tiger Heart Cover</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         7. SKILLS & TECHNICAL ARSENAL
+         ============================================================== -->
+    <section class="skills-section section-padding" id="skills">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">05</span>
+            <span class="section-kicker">TECHNICAL ARSENAL</span>
+          </div>
+          <h2 class="section-title">Tools &amp; Design Disciplines</h2>
+          <p class="section-subtitle">A balanced fusion of industry-standard creative software and core foundational design principles.</p>
+        </div>
+
+        <div class="skills-content-grid">
+
+          <!-- Software Proficiency Column -->
+          <div class="software-column">
+            <h3 class="skills-col-title">Software Expertise</h3>
+            <p class="skills-col-sub">Verified software proficiency from ATS resume.</p>
+
+            <div class="software-cards-list">
+              
+              <!-- Photoshop Card -->
+              <div class="software-card">
+                <div class="sw-header">
+                  <div class="sw-icon-badge ps-badge">Ps</div>
+                  <div class="sw-details">
+                    <h4 class="sw-name">Adobe Photoshop</h4>
+                    <span class="sw-role">Photo Manipulation &bull; Digital Imagery &bull; Post-Production</span>
+                  </div>
+                  <span class="sw-level-tag">Advanced</span>
+                </div>
+                <div class="sw-bar-track">
+                  <div class="sw-bar-fill" data-width="95%"></div>
+                </div>
+              </div>
+
+              <!-- Illustrator Card -->
+              <div class="software-card">
+                <div class="sw-header">
+                  <div class="sw-icon-badge ai-badge">Ai</div>
+                  <div class="sw-details">
+                    <h4 class="sw-name">Adobe Illustrator</h4>
+                    <span class="sw-role">Vector Art &bull; Brand Identity &bull; Typography &bull; Icons</span>
+                  </div>
+                  <span class="sw-level-tag">Advanced</span>
+                </div>
+                <div class="sw-bar-track">
+                  <div class="sw-bar-fill" data-width="92%"></div>
+                </div>
+              </div>
+
+              <!-- Figma Card -->
+              <div class="software-card">
+                <div class="sw-header">
+                  <div class="sw-icon-badge figma-badge">
+                    <svg viewBox="0 0 38 57" fill="none" width="16" height="24">
+                      <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+                      <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5A9.5 9.5 0 0 1 0 47.5z" fill="#0ACF83"/>
+                      <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#FF7262"/>
+                      <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E"/>
+                      <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF"/>
+                    </svg>
+                  </div>
+                  <div class="sw-details">
+                    <h4 class="sw-name">Figma</h4>
+                    <span class="sw-role">UI/UX Systems &bull; Responsive Wireframing &bull; Component Libraries</span>
+                  </div>
+                  <span class="sw-level-tag">Advanced</span>
+                </div>
+                <div class="sw-bar-track">
+                  <div class="sw-bar-fill" data-width="90%"></div>
+                </div>
+              </div>
+
+              <!-- Premiere Pro Card -->
+              <div class="software-card">
+                <div class="sw-header">
+                  <div class="sw-icon-badge pr-badge">Pr</div>
+                  <div class="sw-details">
+                    <h4 class="sw-name">Adobe Premiere Pro</h4>
+                    <span class="sw-role">Video Editing &bull; Audio Sync &bull; Social Cutdowns</span>
+                  </div>
+                  <span class="sw-level-tag">Intermediate</span>
+                </div>
+                <div class="sw-bar-track">
+                  <div class="sw-bar-fill" data-width="80%"></div>
+                </div>
+              </div>
+
+              <!-- After Effects Card -->
+              <div class="software-card">
+                <div class="sw-header">
+                  <div class="sw-icon-badge ae-badge">Ae</div>
+                  <div class="sw-details">
+                    <h4 class="sw-name">Adobe After Effects</h4>
+                    <span class="sw-role">Motion Graphics &bull; Logo Animation &bull; Visual Dynamics</span>
+                  </div>
+                  <span class="sw-level-tag">Intermediate</span>
+                </div>
+                <div class="sw-bar-track">
+                  <div class="sw-bar-fill" data-width="78%"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Design Disciplines & Interactive Pills -->
+          <div class="disciplines-column">
+            <h3 class="skills-col-title">Core Competencies</h3>
+            <p class="skills-col-sub">End-to-end design craft across digital and physical mediums.</p>
+
+            <div class="competencies-grid">
+              
+              <div class="comp-box">
+                <div class="comp-icon">&#10022;</div>
+                <h4 class="comp-title">Typography &amp; Pairing</h4>
+                <p class="comp-desc">Editorial serif balancing with clean sans-serifs, vertical rhythms, and fluid type scaling.</p>
+              </div>
+
+              <div class="comp-box">
+                <div class="comp-icon">&#9638;</div>
+                <h4 class="comp-title">Grid &amp; Composition</h4>
+                <p class="comp-desc">Swiss asymmetric systems, column grids, whitespace tension, and visual hierarchy.</p>
+              </div>
+
+              <div class="comp-box">
+                <div class="comp-icon">&#9680;</div>
+                <h4 class="comp-title">Color Harmony &amp; Mood</h4>
+                <p class="comp-desc">Emotionally informed palettes, 60-30-10 balancing, high-contrast accessibility.</p>
+              </div>
+
+              <div class="comp-box">
+                <div class="comp-icon">&#10061;</div>
+                <h4 class="comp-title">Brand Identity Systems</h4>
+                <p class="comp-desc">Logos, stationery guidelines, merchandise, OOH billboard integration, and brand books.</p>
+              </div>
+
+              <div class="comp-box">
+                <div class="comp-icon">&#9635;</div>
+                <h4 class="comp-title">Responsive UI Systems</h4>
+                <p class="comp-desc">Wireframing, auto-layout tokens, multi-breakpoint device components in Figma.</p>
+              </div>
+
+              <div class="comp-box">
+                <div class="comp-icon">&#9998;</div>
+                <h4 class="comp-title">Vector Illustration</h4>
+                <p class="comp-desc">Expressive character art, stylized pop portraits, iconography, and editorial book covers.</p>
+              </div>
+
+            </div>
+
+            <!-- Soft Skills Pills -->
+            <div class="soft-skills-cluster">
+              <span class="cluster-label">Soft Skills:</span>
+              <span class="soft-pill">Creative Problem Solving</span>
+              <span class="soft-pill">Visual Storytelling</span>
+              <span class="soft-pill">Attention to Detail</span>
+              <span class="soft-pill">Time Management</span>
+              <span class="soft-pill">Continuous Learning</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         8. DESIGN PROCESS ("HOW I DESIGN")
+         ============================================================== -->
+    <section class="process-section section-padding" id="process">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">06</span>
+            <span class="section-kicker">METHODOLOGY</span>
+          </div>
+          <h2 class="section-title">How I Design</h2>
+          <p class="section-subtitle">A disciplined, 5-stage creative process that transforms ambiguous briefs into purposeful visual solutions.</p>
+        </div>
+
+        <div class="process-timeline">
+          
+          <div class="process-step">
+            <div class="step-num">01</div>
+            <div class="step-dot"></div>
+            <div class="step-body">
+              <h3 class="step-title">Discover &amp; Immerse</h3>
+              <p class="step-desc">
+                Unpacking the brief, defining audience psychology, analyzing competitive context, and curating an inspiring moodboard of textures, typography, and color aesthetics.
+              </p>
+              <div class="step-tags">
+                <span>Brief Analysis</span>
+                <span>Visual Moodboards</span>
+                <span>Context Research</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-num">02</div>
+            <div class="step-dot"></div>
+            <div class="step-body">
+              <h3 class="step-title">Define &amp; Wireframe</h3>
+              <p class="step-desc">
+                Structuring the information architecture. Rapid thumbnail sketches for posters and brand marks; low-fidelity wireframes and user flow mapping for UI/UX projects.
+              </p>
+              <div class="step-tags">
+                <span>Thumbnail Sketches</span>
+                <span>UX Architecture</span>
+                <span>Low-Fi Layouts</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-num">03</div>
+            <div class="step-dot"></div>
+            <div class="step-body">
+              <h3 class="step-title">Design &amp; Compose</h3>
+              <p class="step-desc">
+                Translating structural wireframes into high-fidelity visual artwork. Crafting custom typography pairings, precise vector curves in Illustrator, and cohesive color systems.
+              </p>
+              <div class="step-tags">
+                <span>Figma UI Systems</span>
+                <span>Vector Geometry</span>
+                <span>Color Balancing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-num">04</div>
+            <div class="step-dot"></div>
+            <div class="step-body">
+              <h3 class="step-title">Refine &amp; Contextualize</h3>
+              <p class="step-desc">
+                Placing designs into realistic multi-device frames, print packaging mockups, and real-world billboard settings. Rigorous micro-detail audits and typography adjustments.
+              </p>
+              <div class="step-tags">
+                <span>3D Device Mockups</span>
+                <span>Packaging Renders</span>
+                <span>Hierarchy Audit</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step">
+            <div class="step-num">05</div>
+            <div class="step-dot"></div>
+            <div class="step-body">
+              <h3 class="step-title">Deliver &amp; Document</h3>
+              <p class="step-desc">
+                Exporting print-ready high-resolution files (CMYK 300 DPI, bleed specs) for physical collateral, and responsive SVG assets, design tokens, and components for developers.
+              </p>
+              <div class="step-tags">
+                <span>Print-Ready CMYK</span>
+                <span>Developer Handoff</span>
+                <span>Asset Organization</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         9. EDUCATION, CREDENTIALS & RESUME
+         ============================================================== -->
+    <section class="resume-section section-padding" id="resume">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">07</span>
+            <span class="section-kicker">BACKGROUND &amp; CREDENTIALS</span>
+          </div>
+          <h2 class="section-title">Education &amp; Resume</h2>
+          <p class="section-subtitle">Verified academic qualifications and downloadable curriculum vitae.</p>
+        </div>
+
+        <div class="resume-split-grid">
+
+          <!-- Left: Education Timeline -->
+          <div class="education-block">
+            <h3 class="resume-subheading">Formal Education</h3>
+
+            <div class="edu-card">
+              <div class="edu-years">Aug 2025 &ndash; Sep 2026 (Expected)</div>
+              <h4 class="edu-degree">Diploma in Graphics, Web Design &amp; 2D Animation (DGWA)</h4>
+              <p class="edu-institution">Maya Academy of Advanced Cinematics (MAAC) &bull; Gorakhpur</p>
+              <p class="edu-description">
+                Comprehensive professional program focusing on graphic design, brand identity systems, typography, web interface design, digital painting, and 2D vector animation.
+              </p>
+              <div class="edu-badge">CURRENTLY ENROLLED</div>
+            </div>
+
+            <div class="edu-card">
+              <div class="edu-years">2020 &ndash; 2023</div>
+              <h4 class="edu-degree">Bachelor of Science (B.Sc.)</h4>
+              <p class="edu-institution">Deen Dayal Upadhyaya Gorakhpur University &bull; Gorakhpur, UP</p>
+              <p class="edu-description">
+                Graduated with analytical foundation, quantitative problem-solving discipline, and rigorous attention to detail that directly informs modern digital design systems.
+              </p>
+              <div class="edu-badge edu-badge-done">COMPLETED</div>
+            </div>
+
+            <!-- Language Proficiency -->
+            <div class="lang-card">
+              <h4 class="lang-title">Languages</h4>
+              <div class="lang-row">
+                <span class="lang-name">English</span>
+                <span class="lang-level">Professional Working Proficiency</span>
+              </div>
+              <div class="lang-row">
+                <span class="lang-name">Hindi</span>
+                <span class="lang-level">Native / Bilingual</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive CV Download Card -->
+          <div class="resume-download-card">
+            <div class="cv-card-header">
+              <div class="cv-doc-badge">PDF &bull; ATS VERIFIED</div>
+              <span class="cv-status">READY FOR DOWNLOAD</span>
+            </div>
+
+            <div class="cv-card-body">
+              <div class="cv-icon-wrap">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <polyline points="10 9 9 9 8 9"/>
+                </svg>
+              </div>
+
+              <h4 class="cv-file-title">Priyanka_Singh_Resume.pdf</h4>
+              <p class="cv-file-meta">Curriculum Vitae &bull; Updated 2026 &bull; Formatted for ATS &amp; Studio Review</p>
+
+              <div class="cv-highlights-list">
+                <div class="cv-item">&bull; <strong>Name:</strong> Priyanka Singh</div>
+                <div class="cv-item">&bull; <strong>Title:</strong> Graphic Designer | UI/UX Designer</div>
+                <div class="cv-item">&bull; <strong>Contact:</strong> priyankasingh09@gmail.com</div>
+                <div class="cv-item">&bull; <strong>Phone:</strong> +91 6306023403</div>
+                <div class="cv-item">&bull; <strong>Location:</strong> Gorakhpur, UP, India</div>
+                <div class="cv-item">&bull; <strong>Software:</strong> Photoshop, Illustrator, Figma, Premiere Pro, After Effects</div>
+              </div>
+
+              <div class="cv-cta-group">
+                <a href="assets/docs/Priyanka_Singh_Resume.pdf" download="Priyanka_Singh_Resume.pdf" class="btn btn-primary btn-block btn-lg" id="downloadCvBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                  <span>Download Verified Resume (PDF)</span>
+                </a>
+                <a href="assets/docs/Priyanka_Singh_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-block">
+                  <span>View Resume in New Tab &nearr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================================
+         10. CONTACT & INQUIRIES
+         ============================================================== -->
+    <section class="contact-section section-padding" id="contact">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-tag-group">
+            <span class="section-num">08</span>
+            <span class="section-kicker">INITIATE COLLABORATION</span>
+          </div>
+          <h2 class="section-title">Let's Create Something Memorable.</h2>
+          <p class="section-subtitle">Whether you have a brand identity, UI/UX project, poster campaign, or full-time opportunity, I'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-split-grid">
+
+          <!-- Left: Direct Contact Information -->
+          <div class="contact-info-panel">
+            <div class="contact-card">
+              <span class="card-kicker">DIRECT EMAIL</span>
+              <div class="contact-val-group">
+                <a href="mailto:priyankasingh09@gmail.com" class="contact-primary-val" id="emailVal">priyankasingh09@gmail.com</a>
+                <button class="copy-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard" title="Copy Email">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  <span class="copy-label">Copy</span>
+                </button>
+              </div>
+              <p class="card-caption">I usually reply within 24 business hours.</p>
+            </div>
+
+            <div class="contact-card">
+              <span class="card-kicker">PHONE &bull; WHATSAPP</span>
+              <div class="contact-val-group">
+                <a href="tel:+916306023403" class="contact-primary-val">+91 6306023403</a>
+              </div>
+              <p class="card-caption">Available Monday through Saturday for calls or chats.</p>
+            </div>
+
+            <div class="contact-card">
+              <span class="card-kicker">CURRENT LOCATION</span>
+              <div class="contact-val-group">
+                <span class="contact-plain-val">Gorakhpur, Uttar Pradesh, India</span>
+              </div>
+              <p class="card-caption">Open to remote projects worldwide and on-site roles.</p>
+            </div>
+
+            <div class="contact-card">
+              <span class="card-kicker">WEB PORTFOLIO</span>
+              <div class="contact-val-group">
+                <a href="https://priyanka-new.vercel.app/" target="_blank" rel="noopener noreferrer" class="contact-primary-val">priyanka-new.vercel.app &nearr;</a>
+              </div>
+              <p class="card-caption">Online live portfolio deployment.</p>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Contact Form -->
+          <div class="contact-form-panel">
+            <form class="contact-form" id="contactForm" novalidate>
+              <div class="form-title">Send a Message</div>
+              <p class="form-sub">Share your project ideas, timelines, and goals.</p>
+
+              <div class="form-group">
+                <label for="formName" class="form-label">Your Name <span class="req">*</span></label>
+                <input type="text" id="formName" name="name" class="form-input" placeholder="e.g. Maya Sharma" required>
+                <span class="form-error" id="nameError">Please enter your name</span>
+              </div>
+
+              <div class="form-group">
+                <label for="formEmail" class="form-label">Your Email <span class="req">*</span></label>
+                <input type="email" id="formEmail" name="email" class="form-input" placeholder="e.g. maya@example.com" required>
+                <span class="form-error" id="emailError">Please enter a valid email address</span>
+              </div>
+
+              <div class="form-group">
+                <label for="formProject" class="form-label">Project Type <span class="req">*</span></label>
+                <select id="formProject" name="projectType" class="form-input form-select" required>
+                  <option value="" disabled selected>Select an area of interest...</option>
+                  <option value="uiux">UI/UX Design &amp; Web Systems</option>
+                  <option value="branding">Brand Identity &amp; Packaging</option>
+                  <option value="poster">Poster &amp; Advertising Campaigns</option>
+                  <option value="vector">Vector Illustration &amp; Editorial</option>
+                  <option value="fulltime">Full-time / Freelance Employment</option>
+                  <option value="other">Other Inquiry</option>
+                </select>
+                <span class="form-error" id="projectError">Please choose a project type</span>
+              </div>
+
+              <div class="form-group">
+                <label for="formMessage" class="form-label">Message / Project Details <span class="req">*</span></label>
+                <textarea id="formMessage" name="message" class="form-input form-textarea" rows="4" placeholder="Tell me about your brand, requirements, deadlines, or vision..." required></textarea>
+                <span class="form-error" id="messageError">Please enter your message</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-lg" id="submitBtn">
+                <span>Send Message</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              </button>
+
+              <div class="form-feedback" id="formFeedback"></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==============================================================
+       FOOTER
+       ============================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-mark">PS</span>
+            <span class="footer-name">PRIYANKA SINGH</span>
+          </div>
+          <p class="footer-tagline">
+            Designing Visual Experiences That People Remember.<br>
+            Graphic Designer &times; UI/UX Designer based in Gorakhpur, Uttar Pradesh.
+          </p>
+        </div>
+
+        <div class="footer-clock-box">
+          <span class="clock-label">Gorakhpur, India (IST)</span>
+          <div class="clock-time" id="footerClock">--:--:-- IST</div>
+          <span class="clock-status">&bull; Open For Remote &amp; On-Site Collaborations</span>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          &copy; 2026 Priyanka Singh. All rights reserved. Built with semantic HTML5, modern CSS3 &amp; Vanilla JavaScript.
+        </p>
+
+        <div class="footer-links">
+          <a href="#hero" class="back-to-top" id="backToTop" aria-label="Back to top">
+            <span>Back to Top</span>
+            <span class="top-arrow">&uarr;</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==============================================================
+       INTERACTIVE PROJECT DETAIL MODAL
+       ============================================================== -->
+  <div class="project-modal" id="projectModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-window">
+      
+      <div class="modal-header">
+        <div class="modal-badge-info">
+          <span class="modal-cat" id="modalCat">CATEGORY</span>
+          <span class="modal-date" id="modalDate">2026</span>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <h2 class="modal-title" id="modalTitle">Project Title</h2>
+        <p class="modal-subtitle" id="modalSubtitle">Subheading overview</p>
+
+        <div class="modal-media-wrap">
+          <img src="" alt="" class="modal-image" id="modalImage">
+        </div>
+
+        <div class="modal-meta-bar">
+          <div class="meta-col">
+            <span class="m-label">Tools Used</span>
+            <span class="m-val" id="modalTools">Photoshop, Illustrator</span>
+          </div>
+          <div class="meta-col">
+            <span class="m-label">Deliverables</span>
+            <span class="m-val" id="modalDeliverables">Print &amp; Digital</span>
+          </div>
+          <div class="meta-col">
+            <span class="m-label">Project Scope</span>
+            <span class="m-val" id="modalScope">Identity &amp; Layout</span>
+          </div>
+        </div>
+
+        <div class="modal-text-content">
+          <h4 class="modal-section-h">Design Approach &amp; Overview</h4>
+          <p id="modalOverview" class="modal-overview-p"></p>
+
+          <h4 class="modal-section-h">Key Highlights</h4>
+          <ul id="modalHighlights" class="modal-highlights-ul"></ul>
+
+          <div class="modal-figma-action" id="modalFigmaAction" style="display: none; margin-top: 2rem;">
+            <a href="https://www.figma.com/design/50lYdtyUKWREys1ZElridp/all-work?t=TKbUrXDmWL6rbHok-0" target="_blank" rel="noopener noreferrer" class="btn btn-figma" id="modalFigmaLink" style="display: inline-flex; width: auto;">
+              <svg width="15" height="15" viewBox="0 0 38 57" fill="none" aria-hidden="true">
+                <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+                <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5A9.5 9.5 0 0 1 0 47.5z" fill="#0ACF83"/>
+                <path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z" fill="#FF7262"/>
+                <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E"/>
+                <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF"/>
+              </svg>
+              <span>Open Prototype &amp; Design System in Figma &nearr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="modal-nav-btn prev-btn" id="modalPrevBtn">
+          <span class="arrow">&larr;</span>
+          <span>Previous Project</span>
+        </button>
+        <span class="modal-counter-indicator" id="modalCounter">1 / 16</span>
+        <button class="modal-nav-btn next-btn" id="modalNextBtn">
+          <span>Next Project</span>
+          <span class="arrow">&rarr;</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==============================================================
+       FULLSCREEN LIGHTBOX MODAL (FOR GRAPHIC ARCHIVE)
+       ============================================================== -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true" role="dialog" aria-label="Image Preview Lightbox">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-container">
+      
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close lightbox">&times;</button>
+
+      <div class="lightbox-content">
+        <button class="lightbox-arrow lb-prev" id="lightboxPrev" aria-label="Previous image">&larr;</button>
+        
+        <div class="lightbox-figure">
+          <img src="" alt="" class="lightbox-image" id="lightboxImage">
+          <div class="lightbox-caption">
+            <span class="lb-title" id="lightboxTitle">Image Title</span>
+            <span class="lb-cat" id="lightboxCategory">Category</span>
+            <span class="lb-counter" id="lightboxCounter">1 / 16</span>
+          </div>
+        </div>
+
+        <button class="lightbox-arrow lb-next" id="lightboxNext" aria-label="Next image">&rarr;</button>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
