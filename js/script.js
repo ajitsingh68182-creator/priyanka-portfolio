@@ -968,7 +968,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (entry.isIntersecting) {
             const fill = entry.target.querySelector('.sw-bar-fill');
             if (fill) {
-              const targetWidth = fill.getAttribute('data-width') || '85%';
+              const targetWidth = fill.getAttribute('data-width') || '100%';
               fill.style.width = targetWidth;
             }
             skillsObserver.unobserve(entry.target);
@@ -980,7 +980,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       softwareCards.forEach(card => {
         const fill = card.querySelector('.sw-bar-fill');
-        if (fill) fill.style.width = fill.getAttribute('data-width') || '85%';
+        if (fill) fill.style.width = fill.getAttribute('data-width') || '100%';
       });
     }
 
